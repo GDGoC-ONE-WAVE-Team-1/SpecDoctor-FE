@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReportFakeActivityForm from './ReportFakeActivityForm';
 import { api } from '@/lib/apiClient';
 
@@ -18,23 +18,23 @@ export default function VerificationCenterCard() {
     const [isLoading, setIsLoading] = useState(true);
 
     // Fetch activity count data
-    useEffect(() => {
-        const fetchActivityData = async () => {
-            try {
-                const data = await api.get<ActivityCountData>(`/api/v1/activity/count-all`);
-                if (!data) {
-                    throw new Error('Failed to fetch activity data');
-                }
-                setActivityData(data);
-            } catch (error) {
-                console.error('Error fetching activity data:', error);
-            } finally {
-                setIsLoading(false);
+    const fetchActivityData = useCallback(async () => {
+        try {
+            const data = await api.get<ActivityCountData>(`/api/v1/activity/count-all`);
+            if (!data) {
+                throw new Error('Failed to fetch activity data');
             }
-        };
-
-        fetchActivityData();
+            setActivityData(data);
+        } catch (error) {
+            console.error('Error fetching activity data:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
+
+    useEffect(() => {
+        fetchActivityData();
+    }, [fetchActivityData]);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -47,11 +47,12 @@ export default function VerificationCenterCard() {
         };
     }, [isModalOpen]);
 
-    const handleReport = () => {
+    const handleReport = async () => {
+        await fetchActivityData();
         setIsModalOpen(true);
     }
 
-    const closeModal = () => {
+    const closeModal = async () => {
         setIsModalOpen(false);
     }
 
