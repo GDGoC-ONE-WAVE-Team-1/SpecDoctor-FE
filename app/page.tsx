@@ -1,15 +1,17 @@
 import VerificationCenterCard from "./components/VerificationCenterCard";
 import ReviewPromoCard from "./components/ReviewPromoCard";
-import Header from "./components/header";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* 상단 헤더 */}
+      <div className="w-full">
       <header className="w-full">
-        {/* TODO: 실제 로그인 상태에 맞게 isLoggedIn, profileImageUrl 등을 전달 */}
-        <Header isLoggedIn={false} />
+        <HeroSection />
       </header>
+      </div>
 
       {/* 메인 콘텐츠 */}
       <main className="flex flex-1 flex-col items-center justify-center p-8">
@@ -29,4 +31,3 @@ export default function Home() {
     </div>
   );
 }
-

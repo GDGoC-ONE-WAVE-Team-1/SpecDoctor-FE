@@ -3,15 +3,12 @@ import Image from "next/image";
 type HeaderProps = {
   /** 로그인 여부 */
   isLoggedIn?: boolean;
-  /** 프로필 이미지 URL (로그인 상태에서 사용) */
-  profileImageUrl?: string;
   /** 프로필 이미지가 없을 때 표시할 이니셜 */
   profileInitial?: string;
 };
 
 export default function Header({
   isLoggedIn = false,
-  profileImageUrl,
   profileInitial = "U",
 }: HeaderProps) {
   return (
