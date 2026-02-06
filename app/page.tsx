@@ -1,3 +1,5 @@
+import CautionHeader from "./components/CautionHeader";
+import DangerReport from "./components/DangerReport";
 import ReviewForm from "./components/ReviewForm";
 import ReviewCard from "./components/ReviewCard";
 import VerificationCenterCard from "./components/VerificationCenterCard";
@@ -28,6 +30,9 @@ export default function Home() {
   ];
 
   return (
+    <main className="min-h-screen bg-white">
+      {/* Caution Header Section */}
+      <CautionHeader />
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 font-sans">
       <ReviewForm />
 
@@ -66,21 +71,8 @@ export default function Home() {
       </header>
       </div>
 
-      {/* 메인 콘텐츠 */}
-      <main className="flex flex-1 flex-col items-center justify-center p-8">
-        {/* Forced horizontal layout with flex-row */}
-        <div className="flex flex-row gap-8 max-w-6xl w-full justify-center items-start">
-          {/* Verification Center Card */}
-          <div className="flex flex-col items-center gap-4 w-full md:w-auto">
-            <VerificationCenterCard />
-          </div>
-
-          {/* Review Promo Card */}
-          <div className="flex flex-col items-center gap-4 w-full md:w-auto">
-            <ReviewPromoCard />
-          </div>
-        </div>
-      </main>
-    </div>
+      {/* Danger Report Section */}
+      <DangerReport />
+    </main>
   );
 }
