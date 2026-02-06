@@ -1,3 +1,5 @@
+import ClubHeader from "./components/ClubHeader";
+import ReviewSection from "./components/ReviewSection";
 import CautionHeader from "./components/CautionHeader";
 import DangerReport from "./components/DangerReport";
 import ReviewForm from "./components/ReviewForm";
@@ -31,6 +33,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
+      {/* Club Header Section */}
+      <ClubHeader />
+
+      {/* Review Section */}
+      <ReviewSection />
       {/* Caution Header Section */}
       <CautionHeader />
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 font-sans">
