@@ -75,7 +75,14 @@ export default function ReviewForm() {
                             </button>
                         ))}
                     </div>
-                    <p className="text-[10px] sm:text-xs font-bold text-[#6366f1]">아주 만족스러워요!</p>
+
+                    <p className="text-[10px] sm:text-xs font-bold text-[#6366f1]">
+                        {rating === 1 && "매우 불만족스러워요"}
+                        {rating === 2 && "불만족스러워요"}
+                        {rating === 3 && "보통이에요"}
+                        {rating === 4 && "만족스러워요"}
+                        {rating === 5 && "아주 만족스러워요"}
+                    </p>
                 </div>
 
                 {/* Content */}
@@ -111,7 +118,7 @@ export default function ReviewForm() {
                     </button>
                 </div>
 
-            </form>
-        </div>
+            </form >
+        </div >
     );
 }
