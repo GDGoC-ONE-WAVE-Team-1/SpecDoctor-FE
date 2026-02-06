@@ -24,7 +24,7 @@ export default function ReviewSection() {
     ];
 
     return (
-        <div className="w-full bg-white py-12">
+        <div className="w-full pb-12">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
 
                 {/* Header Section */}
