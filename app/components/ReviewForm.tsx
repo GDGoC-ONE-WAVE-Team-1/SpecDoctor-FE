@@ -28,7 +28,7 @@ export default function ReviewForm() {
                     <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">대외활동명</label>
                     <input
                         type="text"
-                        value="SOPT(솝트)"
+                        value="SOPT (솝트)"
                         disabled
                         className="w-full bg-gray-50 text-gray-500 px-4 py-3 rounded-xl text-sm font-medium border-none focus:ring-0"
                     />
