@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import ReviewForm from './ReviewForm';
 import ReportFakeActivityForm from './ReportFakeActivityForm';
 
 export default function VerificationCenterCard() {
