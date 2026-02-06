@@ -1,3 +1,4 @@
+import ReviewForm from "./components/ReviewForm";
 import ReviewCard from "./components/ReviewCard";
 import VerificationCenterCard from "./components/VerificationCenterCard";
 import ReviewPromoCard from "./components/ReviewPromoCard";
@@ -28,6 +29,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 font-sans">
+      <ReviewForm />
 
       {/* Section Container */}
       <div className="w-full max-w-7xl mx-auto flex flex-col gap-6">
