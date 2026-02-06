@@ -1,6 +1,6 @@
 import ReviewCard, { ReviewCardProps } from "./ReviewCard";
 
-export default function ReviewSection() {
+export default function ReviewSection({ disableWriteReview = false }: { disableWriteReview?: boolean }) {
     // Mock Data based on screenshot
     const reviews: ReviewCardProps[] = [
         {
@@ -23,9 +23,12 @@ export default function ReviewSection() {
         }
     ];
 
+
+    console.log(disableWriteReview)
+
     return (
         <div className="w-full pb-12">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="max-w-6xl mx-auto px-4 md:px-8">
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
@@ -40,9 +43,11 @@ export default function ReviewSection() {
                         </div>
                     </div>
 
-                    <button className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
-                        후기 작성하기
-                    </button>
+                    {!disableWriteReview && (
+                        <button className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
+                            후기 작성하기
+                        </button>
+                    )}
                 </div>
 
                 {/* Review Grid */}
