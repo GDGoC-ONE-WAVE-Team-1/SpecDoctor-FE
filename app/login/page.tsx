@@ -2,40 +2,39 @@
 
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { api } from "@/lib/apiClient";
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 
 interface LoginResponse {
-  ok: boolean;
-  user?: {
-    id: string;
-    name: string;
-  };
-  message?: string;
-}
-
-interface LoginRequestBody {
-  idToken: string;
+  accessToken: string;
+  username: string;
 }
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const setCookie = (name: string, value: string, days: number = 7) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+  };
+
   const handleSuccess = async (credentialResponse: any) => {
     const idToken = credentialResponse.credential;
 
     try {
-      const data = await api.post<LoginResponse, LoginRequestBody>("/api/login", {
-        idToken,
-      });
+      const data = await api.get<LoginResponse>(`/login?code=${idToken}`);
 
-      if (!data.ok) {
-        throw new Error(data.message || "로그인 요청이 실패했어요.");
-      }
+      console.log("Login success. Username:", data.username);
+      console.log("Access token received:", data.accessToken);
 
-      console.log("Login success. User:", data.user);
-
-      // TODO: 여기에서 홈으로 이동하거나, 전역 상태에 로그인 정보를 저장하세요.
-      // 예: router.push("/");
+      // 쿠키에 저장 (7일 유효)
+      setCookie("accessToken", data.accessToken, 7);
+      
+      // 홈으로 리다이렉트
+      router.push("/");
     } catch (error) {
       console.error(error);
       alert("로그인에 실패했어요. 다시 시도해 주세요.");
@@ -43,7 +42,7 @@ export default function LoginPage() {
   };
 
   const handleError = () => {
-    console.error("로그인에 실패했어요!");
+      alert("로그인에 실패했어요. 다시 시도해 주세요.");
   };
 
   return (
