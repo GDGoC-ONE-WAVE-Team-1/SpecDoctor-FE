@@ -27,16 +27,17 @@ export default function ReviewCard({
             <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                     {/* Avatar placeholder */}
-                    <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden relative">
-                        {/* In a real app, use next/image */}
-                        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(https://i.pravatar.cc/150?u=' + author + ')' }}></div>
+                    <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center border border-indigo-100 shrink-0">
+                        <span className="text-indigo-600 font-bold text-sm">
+                            {author.charAt(0)}
+                        </span>
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
                             <span className="font-bold text-gray-900">{author}</span>
                             {isVerified && (
                                 <span className="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">
-                                    33기 수료생 인증
+                                    인증
                                 </span>
                             )}
                         </div>

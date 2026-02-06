@@ -12,28 +12,29 @@ export default function ReviewSection({ disableWriteReview = false, activityData
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const fetchReviews = async () => {
+        try {
+            const data = await getReviews(activityData?.name);
+            const formattedReviews: ReviewCardProps[] = data.map((rev) => ({
+                author: `${rev.writer}`,
+                part: rev.role,
+                date: "2025.02 작성",
+                rating: rev.star,
+                content: rev.review,
+                tags: [],
+                isVerified: true
+            }));
+            setReviews(formattedReviews);
+        } catch (error) {
+            console.error("Failed to fetch reviews:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const data = await getReviews();
-                const formattedReviews: ReviewCardProps[] = data.map((rev) => ({
-                    author: typeof rev.writer === 'string' ? rev.writer : `작성자${rev.writer}`,
-                    part: rev.role,
-                    date: "2025.02 작성",
-                    rating: rev.star,
-                    content: rev.review,
-                    tags: [],
-                    isVerified: true
-                }));
-                setReviews(formattedReviews);
-            } catch (error) {
-                console.error("Failed to fetch reviews:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchReviews();
     }, []);
 
@@ -77,7 +78,7 @@ export default function ReviewSection({ disableWriteReview = false, activityData
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center flex-wrap gap-2">
                         <h2 className="text-2xl font-bold text-gray-900">실제 활동 멤버 후기</h2>
                         <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
                             <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -89,7 +90,10 @@ export default function ReviewSection({ disableWriteReview = false, activityData
                     </div>
 
                     {!disableWriteReview && (
-                        <button onClick={handleReport} className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
+                        <button
+                            onClick={handleReport}
+                            className="px-5 py-2.5 border border-indigo-100 rounded-lg text-sm font-bold text-indigo-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all shadow-sm hover:shadow-indigo-100"
+                        >
                             후기 작성하기
                         </button>
                     )}
@@ -97,7 +101,7 @@ export default function ReviewSection({ disableWriteReview = false, activityData
 
                 {/* Review Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                    {reviews.map((review, index) => (
+                    {(isExpanded ? reviews : reviews.slice(0, 2)).map((review, index) => (
                         <ReviewCard key={review.author + index} {...review} />
                     ))}
                 </div>
@@ -111,11 +115,25 @@ export default function ReviewSection({ disableWriteReview = false, activityData
                 {/* More Button */}
                 {reviews.length > 2 && (
                     <div className="text-center">
-                        <button className="inline-flex items-center gap-1 text-gray-500 font-bold hover:text-gray-900 transition-colors">
-                            리뷰 {reviews.length - 2}개 더보기
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="inline-flex items-center gap-1 text-gray-500 font-bold hover:text-gray-900 transition-colors"
+                        >
+                            {isExpanded ? (
+                                <>
+                                    접기
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
+                                    </svg>
+                                </>
+                            ) : (
+                                <>
+                                    리뷰 {reviews.length - 2}개 더보기
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </>
+                            )}
                         </button>
                     </div>
                 )}
@@ -126,7 +144,7 @@ export default function ReviewSection({ disableWriteReview = false, activityData
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
                     <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto scrollbar-hide">
-                        <ReviewForm onClose={closeModal} activityData={activityData} />
+                        <ReviewForm onClose={closeModal} activityData={activityData} onSuccess={fetchReviews} />
                     </div>
                 </div>
             )}
