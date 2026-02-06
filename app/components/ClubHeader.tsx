@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 export default function ClubHeader({ activityData }: { activityData: any }) {
-    console.log(activityData)
     return (
-        <div className="w-full py-16">
+        <div className="w-full py-16 px-4">
             <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8">
 
                 {/* Left Side: Info */}

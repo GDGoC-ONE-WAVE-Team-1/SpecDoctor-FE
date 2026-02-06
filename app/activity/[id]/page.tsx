@@ -46,10 +46,11 @@ export default function ActivityDetailPage() {
         <div className="flex-1 px-6 py-2 bg-[#F8FAFC]">
           <div className="max-w-7xl mx-auto">
 
-            {activityData?.isValid === true && <div className="max-w-5xl mx-auto">
-              <ClubHeader activityData={activityData} />
-              <ReviewSection />
-            </div>}
+            {activityData?.isValid === true &&
+              <div className="max-w-5xl mx-auto">
+                <ClubHeader activityData={activityData} />
+                <ReviewSection activityData={activityData} />
+              </div>}
             {activityData?.isValid === false && <div className="max-w-5xl mx-auto">
               <CautionHeader activityData={activityData} />
               <DangerReport activityData={activityData} />

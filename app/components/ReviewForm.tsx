@@ -1,13 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import { postReview } from "@/lib/reviewApi";
 
 interface ReviewFormProps {
     onClose?: () => void;
+    activityData?: any;
 }
 
-export default function ReviewForm({ onClose }: ReviewFormProps) {
+export default function ReviewForm({ onClose, activityData }: ReviewFormProps) {
     const [rating, setRating] = useState(4);
+    const [name] = useState(activityData?.name);
+    const [role, setRole] = useState("");
+    const [review, setReview] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!review.trim()) {
+            alert("후기를 입력해 주세요.");
+            return;
+        }
+
+        setIsSubmitting(true);
+        try {
+            await postReview({
+                name,
+                review,
+                star: rating,
+                role,
+            });
+            alert("리뷰가 등록되었습니다!");
+            onClose?.();
+        } catch (error) {
+            console.error(error);
+            alert("리뷰 등록에 실패했습니다.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
 
     return (
         <div className="w-full max-w-2xl bg-white rounded-[32px] p-8 shadow-xl mx-auto my-10 border border-gray-100 font-sans">
@@ -25,14 +58,14 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                 </p>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
 
                 {/* Activity Name */}
                 <div>
                     <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">대외활동명</label>
                     <input
                         type="text"
-                        value="SOPT (솝트)"
+                        value={activityData?.name}
                         disabled
                         className="w-full bg-gray-50 text-gray-500 px-4 py-3 rounded-xl text-sm font-medium border-none focus:ring-0"
                     />
@@ -45,17 +78,12 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                         <input
                             type="text"
                             placeholder="예: 콘텐츠 기획, 영상 제작"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
                             className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all placeholder-gray-300 text-gray-800"
                         />
                     </div>
-                    <div className="flex-1">
-                        <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">활동 기간 (시작일)</label>
-                        <input
-                            type="text"
-                            placeholder="2025.03"
-                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all placeholder-gray-300 text-gray-800"
-                        />
-                    </div>
+
                 </div>
 
                 {/* Rating */}
@@ -94,6 +122,8 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                     <textarea
                         className="w-full bg-gray-50/50 p-4 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all min-h-[140px] resize-none placeholder-gray-400"
                         placeholder="활동을 통해 얻은 성과, 운영진의 피드백, 분위기 등 구체적으로 적어주세요."
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
                     ></textarea>
                 </div>
 
@@ -102,8 +132,12 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                     <button type="button" onClick={onClose} className="flex-1 bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                         취소
                     </button>
-                    <button type="submit" className="flex-[2] bg-[#6366f1] text-white font-bold py-3.5 rounded-xl hover:bg-[#4f46e5] transition-colors shadow-lg shadow-indigo-200 text-sm">
-                        후기 등록하기
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="flex-[2] bg-[#6366f1] text-white font-bold py-3.5 rounded-xl hover:bg-[#4f46e5] transition-colors shadow-lg shadow-indigo-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {isSubmitting ? "등록 중..." : "후기 등록하기"}
                     </button>
                 </div>
 
