@@ -41,7 +41,7 @@ export default function ReviewForm() {
                         <input
                             type="text"
                             placeholder="예: 콘텐츠 기획, 영상 제작"
-                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:ring-1 focus:ring-indigo-200 placeholder-gray-300 text-gray-800"
+                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all placeholder-gray-300 text-gray-800"
                         />
                     </div>
                     <div className="flex-1">
@@ -49,7 +49,7 @@ export default function ReviewForm() {
                         <input
                             type="text"
                             placeholder="2025.03"
-                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:ring-1 focus:ring-indigo-200 placeholder-gray-300 text-gray-800"
+                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all placeholder-gray-300 text-gray-800"
                         />
                     </div>
                 </div>
@@ -75,13 +75,12 @@ export default function ReviewForm() {
                             </button>
                         ))}
                     </div>
-
                     <p className="text-[10px] sm:text-xs font-bold text-[#6366f1]">
                         {rating === 1 && "매우 불만족스러워요"}
                         {rating === 2 && "불만족스러워요"}
                         {rating === 3 && "보통이에요"}
                         {rating === 4 && "만족스러워요"}
-                        {rating === 5 && "아주 만족스러워요"}
+                        {rating === 5 && "아주 만족스러워요!"}
                     </p>
                 </div>
 
@@ -89,7 +88,7 @@ export default function ReviewForm() {
                 <div>
                     <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">상세 후기</label>
                     <textarea
-                        className="w-full bg-gray-50/50 p-4 rounded-xl text-sm border-none focus:ring-1 focus:ring-indigo-200 min-h-[140px] resize-none placeholder-gray-400"
+                        className="w-full bg-gray-50/50 p-4 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all min-h-[140px] resize-none placeholder-gray-400"
                         placeholder="활동을 통해 얻은 성과, 운영진의 피드백, 분위기 등 구체적으로 적어주세요."
                     ></textarea>
                 </div>
