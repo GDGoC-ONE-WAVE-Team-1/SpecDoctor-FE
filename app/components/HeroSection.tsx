@@ -1,7 +1,6 @@
 import Image from "next/image";
-import type React from "react";
-import Header from "./Header";
 import SearchInput from "./SearchInput";
+import Header from "./header";
 
 export default function HeroSection() {
   return (
