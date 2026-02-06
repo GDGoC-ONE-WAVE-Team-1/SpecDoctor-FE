@@ -43,7 +43,7 @@ export default function ActivityDetailPage() {
           </div>
         </div>
 
-        <div className="flex-1 px-6 py-8 bg-[#F8FAFC]">
+        <div className="flex-1 px-6 py-2 bg-[#F8FAFC]">
           <div className="max-w-7xl mx-auto">
 
             {activityData?.isValid === true && <div className="max-w-5xl mx-auto">
