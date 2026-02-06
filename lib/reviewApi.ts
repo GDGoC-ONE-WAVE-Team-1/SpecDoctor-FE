@@ -9,9 +9,10 @@ export interface Review {
     role: string;
 }
 
-export const getReviews = async (activityName: string): Promise<Review[]> => {
+export const getReviews = async (activityName?: string): Promise<Review[]> => {
     try {
-        const response = await api.get<Review[]>(`/api/review?activityName=${activityName}`);
+        const url = activityName ? `/api/review?activityName=${activityName}` : `/api/review/all`;
+        const response = await api.get<Review[]>(url);
         return response;
     } catch (error) {
         console.error("Failed to fetch reviews:", error);
