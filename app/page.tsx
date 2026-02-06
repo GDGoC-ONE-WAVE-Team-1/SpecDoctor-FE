@@ -42,9 +42,7 @@ export default function Home() {
             </div>
           </div>
 
-          <button className="hidden sm:block px-5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-600 font-medium hover:bg-gray-50 transition-colors">
-            후기 작성하기
-          </button>
+
         </div>
 
         {/* Review Cards Grid */}
