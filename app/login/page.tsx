@@ -4,6 +4,7 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/apiClient";
+import { saveUserInfo } from "@/lib/auth";
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 
@@ -15,24 +16,17 @@ interface LoginResponse {
 export default function LoginPage() {
   const router = useRouter();
 
-  const setCookie = (name: string, value: string, days: number = 7) => {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-  };
-
   const handleSuccess = async (credentialResponse: any) => {
     const idToken = credentialResponse.credential;
 
     try {
       const data = await api.get<LoginResponse>(`/login?code=${idToken}`);
 
-      console.log("Login success. Username:", data.username);
-      console.log("Access token received:", data.accessToken);
+      saveUserInfo({
+        accessToken: data.accessToken,
+        username: data.username,
+      });
 
-      // 쿠키에 저장 (7일 유효)
-      setCookie("accessToken", data.accessToken, 7);
-      
       // 홈으로 리다이렉트
       router.push("/");
     } catch (error) {
