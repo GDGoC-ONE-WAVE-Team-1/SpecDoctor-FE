@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[1팀 2ffbcc59dcf78012a770cedb4b60807c.md](https://github.com/user-attachments/files/25139580/1.2ffbcc59dcf78012a770cedb4b60807c.md)
+# 1팀
 
-## Getting Started
+![spec_doctor_logo.png](spec_doctor_logo.png)
 
-First, run the development server:
+## 서비스명: SpecDoctor
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 배경
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. 문제의 본질: '취업난'이 만든 기형적 대외활동 시장
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![image.png](image.png)
 
-## Learn More
+- **절박함의 무기화:** 취업 문턱이 높아지면서 대학생 및 취준생에게 직무 경험과 같은 차별화된 경험은 필수가 되었습니다. 이를 만들기 위해서 대학생들은 다양한 대외활동에 매우 간절해졌으며, 유령 동아리는 이러한 **간절함**을 미끼로 삼아 비싼 가입비와 시간을 요구합니다.
+- **원치 않는 종교 권유:** 유령 동아리와 더불어 사이비 단체에서도 동아리로 위장하여 대학생들을 끌어들이려는 일이 여러 차례 일어났습니다
+- **스펙 인플레이션:** 꽁꽁 얼어 붙은 취업 시장에서 취업준비생들은 남들보다 하나라도 더 특별한 활동을 해야 한다는 불안감이 정보 확인을 하려다가도 '일단 지원'을 앞서게 만듭니다.
+- **검증의 부재:** 학생은 동아리에 들어가 직접 활동하기 전까진 동아리의 실체를 알기 어려워, 돈과 시간을 빼앗기게 됩니다.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. 서비스의 목적: '검증'을 통한 스펙의 질서 확립
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **물스펙 방지:** 의심이 가는 동아리가 정말 유령 동아리인지,  또는 궁금한 동아리가 어떠한 활동을 하고 이 활동이 내 직무와 연관되는지 분석을 통해 사용자의 돈과 시간을 낭비하는 것을 방지합니다.
+- **기회비용의 보호:** 대학생 및 취업 준비생 분들의 가장 소중한 자산인 ‘시간'과 '비용'이 낭비되지 않도록 사전에 필터링합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[취업난에 우는 대학생들…'가짜 동아리'에 두 번 울지 않으려면](https://www.pressian.com/pages/articles/2026012317321658106)
 
-## Deploy on Vercel
+[https://youtu.be/ZPba2B4vGz4?si=9TgRgKIac5IiRv31](https://youtu.be/ZPba2B4vGz4?si=9TgRgKIac5IiRv31)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 핵심 타깃
+
+- **주 타겟 (Primary):** 수도권 및 전국 단위 연합 동아리를 찾는 **대학생 및 취준생**. 특히 직무 경험이 간절한 저학년~고학년 전체.
+- **부 타겟 (Secondary):**  학생들의 대외활동 진위 여부를 확인하고 싶은 **기업 채용 담당자**.
+    - 자신의 동아리가 투명함을 인증받고 싶은 **정상적인 자치 동아리 운영진**.
+
+---
+
+## 기능
+
+1. **구현된 기능**
+
+| 회원가입/로그인 | 구글 OAuth |
+| --- | --- |
+| 동아리/부트캠프 검색 | 동아리/부캠 DB
+  • 있으면 DB 정보 조회
+  • 없으면 AI 분석 |
+| 실동아리 정보 조회 |   • 실제 수료생의 리뷰
+  • 동아리 연역 |
+| 리뷰 작성 | 수료한 동아리/부트캠프의 리뷰 작성 |
+| 가짜 대외활동 신고 | 허위 정보 신고 접수 |
+1. **추후 구현 예정**
+
+| 마이 페이지 |   • 진료권
+  • 내가 쓴 리뷰 |
+| --- | --- |
+| 진료권 |   • 코인 제도 |
+
+---
+
+## 솔루션 및 차별점
+
+- **검증 솔루션:  더치트식 블랙리스트 & 화이트리스트**
+    - **AI 검증 시스템:** 운영 주체, 회계장부, 결산안 공개 여부 등 구체적 항목으로 검증.
+    - **신뢰도 등급제:** '검증됨', '의심', ’위험’ 등급으로 동아리별 안전 지수 부여.
+    
+- **차별점 (The Edge):**
+    - **기존 플랫폼(에브리타임, 캠퍼스픽)과의 차이:** 기존 플랫폼은 '홍보' 위주이지만, 본 서비스는 '필터링(검증)'에 특화됨.
+    - **스펙 정화:** 단순히 "나쁘다"를 넘어 "특정 활동이 취업 시장에서 이 정도 가치가 있다"는 **가치 평가 기능** 제공.
+    - 피해 방지를 위한 '집단지성 X 휴먼터치' 모니터링
+
+---
+
+## 실행 방안 및 비즈니스 모델
+
+## 실행 방안
+
+- 데이터 수집
+    - 관리자 수집
+    - (추후) 크롤링
+
+### BM (추후)
+
+- 대학 제휴
+    - 재학생 인증
+- 진료권(코인) 제도
+    - 후기를 올리면 다른 활동 1개 열람 가능
+    - 1회 100원
+    - 무제한 패스 월 2,900원
+
+---
+
+## 기대 효과
+
+- **학생 보호:** 취준생의 시간적·경제적 손실 방지 및 심리적 안전망 구축.
+- **동아리 생태계 정화:** 가짜 동아리의 설 자리를 없애고 진정성 있는 학생 자치 문화 회복.
+
+---
+
+## 기술 스택
+
+| FE | Next.js, tailwind css |
+| --- | --- |
+| BE | spring boot |
+| Infra | aws, vercel |
