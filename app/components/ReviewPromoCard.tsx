@@ -32,15 +32,15 @@ export default function ReviewPromoCard() {
                 {/* Description */}
                 <div className="space-y-1 text-gray-600 text-sm md:text-base leading-relaxed">
                     <p>
-                        스펙닥터의 <span className="font-bold text-gray-800">AI 검증 알고리즘</span>이 실시간으로 가짜 동아리와
-                        사기 단체를 색출합니다.
+                        리뷰 1개를 쓸 때마다 <span className="font-bold text-gray-800">진료권 1매를 드립니다!</span></p>
+                    <p>획득한 진료권으로 궁금했던 대외활동의 검증 유무와 실제 수료생 후기를 무료로 열람하세요.
                     </p>
-                    <p>회비 갈취, 허위 홍보, 개인정보 유출 위험을 사전에 차단하세요.</p>
+
                 </div>
 
                 {/* Spacer to fill height if needed or just empty space as per design */}
                 <div className="flex-grow"></div>
             </div>
-        </div>
+        </div >
     );
 }
