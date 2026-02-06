@@ -10,7 +10,7 @@
 | <img width="70" height="70" alt="image" src="https://github.com/user-attachments/assets/3a5f7078-9e8e-4387-8f02-1092041f97ad" /> | <img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/0e4b3ae7-e108-4258-8a83-edccd8bd5aee" /> | <img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/4405db3b-fa21-4bd4-a0b9-0adf5419a5fb" /> | <img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/f56dfa22-bcd7-479e-83bb-dd4a77a8e02c" /> |
 
 
-## 서비스명: SpecDoctor
+## 서비스명: SpecDoctor[https://spec-doctor-fe.vercel.app/]
 
 ---
 
