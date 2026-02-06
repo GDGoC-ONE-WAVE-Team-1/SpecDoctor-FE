@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-export default function ReviewForm() {
+interface ReviewFormProps {
+    onClose?: () => void;
+}
+
+export default function ReviewForm({ onClose }: ReviewFormProps) {
     const [rating, setRating] = useState(4);
 
     return (
@@ -109,7 +113,7 @@ export default function ReviewForm() {
 
                 {/* Actions */}
                 <div className="flex gap-3 pt-4">
-                    <button type="button" className="flex-1 bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+                    <button type="button" onClick={onClose} className="flex-1 bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                         취소
                     </button>
                     <button type="submit" className="flex-[2] bg-[#6366f1] text-white font-bold py-3.5 rounded-xl hover:bg-[#4f46e5] transition-colors shadow-lg shadow-indigo-200 text-sm">

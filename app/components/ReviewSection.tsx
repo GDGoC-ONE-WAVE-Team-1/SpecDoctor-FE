@@ -29,7 +29,7 @@ export default function ReviewSection() {
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         <h2 className="text-2xl font-bold text-gray-900">실제 활동 멤버 후기</h2>
                         <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
                             <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">

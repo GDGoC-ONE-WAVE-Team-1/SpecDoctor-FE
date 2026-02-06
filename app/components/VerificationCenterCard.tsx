@@ -1,6 +1,19 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
+import ReviewForm from './ReviewForm';
 
 export default function VerificationCenterCard() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleReport = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
     return (
         <div className="max-w-7xl mx-auto w-full bg-red-50 rounded-2xl p-6 md:p-8 flex flex-col gap-6">
             {/* Header Section */}
@@ -49,9 +62,19 @@ export default function VerificationCenterCard() {
             </div>
 
             {/* Action Button */}
-            <button className="w-full bg-[#cb2d26] hover:bg-[#b0221c] text-white font-bold py-4 rounded-xl transition-colors shadow-sm">
+            <button onClick={handleReport} className="w-full bg-[#cb2d26] hover:bg-[#b0221c] text-white font-bold py-4 rounded-xl transition-colors shadow-sm">
                 피해 사례 신고하기
             </button>
+
+            {/* Modal Overlay */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+                    <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto">
+                        {/* Close Button on top right of the modal if needed, but ReviewForm has a cancel button */}
+                        <ReviewForm onClose={closeModal} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
