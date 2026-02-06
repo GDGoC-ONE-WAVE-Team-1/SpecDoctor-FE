@@ -67,7 +67,10 @@ export default function VerificationCenterCard() {
             </div>
 
             {/* Action Button */}
-            <button onClick={handleReport} className="w-full bg-[#cb2d26] hover:bg-[#b0221c] text-white font-bold py-4 rounded-xl transition-colors shadow-sm">
+            <button
+                onClick={handleReport}
+                className="w-full bg-[#cb2d26] hover:bg-[#b0221c] text-white font-bold py-5 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+            >
                 피해 사례 신고하기
             </button>
 
