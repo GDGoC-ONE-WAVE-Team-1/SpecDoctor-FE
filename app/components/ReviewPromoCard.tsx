@@ -8,18 +8,16 @@ export default function ReviewPromoCard() {
             <div className="flex flex-col gap-6 h-full">
                 <div className="flex items-center gap-3">
                     {/* Warning Icon (styled differently for this card) */}
-                    <div className="text-red-600">
+                    <div className="text-yellow-500">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
                             viewBox="0 0 24 24"
                             fill="currentColor"
                             className="w-8 h-8"
                         >
                             <path
                                 fillRule="evenodd"
-                                d="M9.401 3.003c1.155-2 3.9-2 5.055 0l9.541 16.56c1.155 2-.292 4.5-2.527 4.5H2.387c-2.235 0-3.682-2.5-2.527-4.5L9.401 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
                                 clipRule="evenodd"
                             />
                         </svg>
@@ -32,15 +30,15 @@ export default function ReviewPromoCard() {
                 {/* Description */}
                 <div className="space-y-1 text-gray-600 text-sm md:text-base leading-relaxed">
                     <p>
-                        스펙닥터의 <span className="font-bold text-gray-800">AI 검증 알고리즘</span>이 실시간으로 가짜 동아리와
-                        사기 단체를 색출합니다.
+                        리뷰 1개를 쓸 때마다 <span className="font-bold text-gray-800">진료권 1매를 드립니다!</span></p>
+                    <p>획득한 진료권으로 궁금했던 대외활동의 검증 유무와 실제 수료생 후기를 무료로 열람하세요.
                     </p>
-                    <p>회비 갈취, 허위 홍보, 개인정보 유출 위험을 사전에 차단하세요.</p>
+
                 </div>
 
                 {/* Spacer to fill height if needed or just empty space as per design */}
                 <div className="flex-grow"></div>
             </div>
-        </div>
+        </div >
     );
 }
