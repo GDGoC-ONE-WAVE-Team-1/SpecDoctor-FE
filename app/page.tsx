@@ -31,15 +31,15 @@ export default function Home() {
       <div className="min-h-screen bg-white flex flex-col">
         {/* 상단 헤더 */}
         <div className="w-full">
-        <header className="w-full">
-          <HeroSection />
-        </header>
-        <div className="px-6 pt-15">
-          <VerificationCenterCard/>
-        </div>
-        <div>
-          <ReviewSection/>
-        </div>
+          <header className="w-full">
+            <HeroSection />
+          </header>
+          <div className="px-6 py-15">
+            <VerificationCenterCard />
+          </div>
+          <div>
+            <ReviewSection />
+          </div>
         </div>
       </div>
     </main>

@@ -3,6 +3,12 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Header from "@/app/components/header";
+import SearchInput from "@/app/components/SearchInput";
+import ClubHeader from "@/app/components/ClubHeader";
+import CautionHeader from "@/app/components/CautionHeader";
+import DangerReport from "@/app/components/DangerReport";
+import ReviewPromoCard from "@/app/components/ReviewPromoCard";
+import ReviewSection from "@/app/components/ReviewSection";
 
 export default function ActivityDetailPage() {
   const params = useParams();
@@ -31,28 +37,23 @@ export default function ActivityDetailPage() {
         </header>
 
         {/* 메인 컨텐츠 */}
-        <div className="flex-1 px-6 py-8">
+        <div className="flex justify-center w-full px-4">
+          <div className="my-20 w-full max-w-5xl">
+            <SearchInput />
+          </div>
+        </div>
+
+        <div className="flex-1 px-6 py-8 bg-[#F8FAFC]">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-[#0B1220] mb-4">
-              활동 상세 페이지
-            </h1>
-            <p className="text-lg text-[#9AA4B2] mb-4">
-              Activity ID: {activityId}
-            </p>
-            
-            {/* 검색 결과 데이터 표시 */}
-            {activityData && (
-              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                <h2 className="text-xl font-semibold text-[#0B1220] mb-2">
-                  검색 결과 데이터:
-                </h2>
-                <pre className="text-sm text-[#9AA4B2] overflow-auto">
-                  {JSON.stringify(activityData, null, 2)}
-                </pre>
-              </div>
-            )}
-            
-            {/* TODO: 여기에 활동 상세 정보를 표시하는 컴포넌트들을 추가하세요 */}
+
+            {activityData?.isValid === true && <div className="max-w-5xl mx-auto">
+              <ClubHeader activityData={activityData} />
+              <ReviewSection />
+            </div>}
+            {activityData?.isValid === false && <div className="max-w-5xl mx-auto">
+              <CautionHeader activityData={activityData} />
+              <DangerReport activityData={activityData} />
+            </div>}
           </div>
         </div>
       </div>

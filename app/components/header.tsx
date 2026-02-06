@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 
@@ -21,12 +22,14 @@ export default function Header() {
     return (
       <div className="flex h-14 w-full items-center justify-between px-10 text-xs text-neutral-800">
         <div className="flex items-center">
-          <Image
-            src="/images/spec_doctor_logo.png"
-            alt="SPEC DOCTOR"
-            width={160}
-            height={100}
-          />
+          <Link href="/">
+            <Image
+              src="/images/spec_doctor_logo.png"
+              alt="SPEC DOCTOR"
+              width={160}
+              height={100}
+            />
+          </Link>
         </div>
         <div className="min-w-[80px]" />
       </div>
@@ -37,12 +40,14 @@ export default function Header() {
     <div className="flex h-14 w-full items-center justify-between px-10 text-xs text-neutral-800">
       {/* 로고 영역 */}
       <div className="flex items-center">
-        <Image
-          src="/images/spec_doctor_logo.png"
-          alt="SPEC DOCTOR"
-          width={160}
-          height={100}
-        />
+        <Link href="/">
+          <Image
+            src="/images/spec_doctor_logo.png"
+            alt="SPEC DOCTOR"
+            width={160}
+            height={100}
+          />
+        </Link>
       </div>
 
       {/* 로그인 / 프로필 영역 */}

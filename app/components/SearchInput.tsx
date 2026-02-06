@@ -35,14 +35,15 @@ export default function SearchInput() {
       );
 
       if (response.result) {
-        // 검색 결과의 result 전체를 세션 스토리지에 저장
-        sessionStorage.setItem('activityResult', JSON.stringify(response.result));
-        
-        // 검색 결과의 result를 사용해서 결과 페이지로 이동
+        const dataToSave = {
+          ...response.result,
+          isValid: response.isValid
+        };
+        sessionStorage.setItem('activityResult', JSON.stringify(dataToSave));
+
         const activityName = response.result.name;
         router.push(`/activity/${activityName}`);
       } else {
-        // 검색 결과가 없으면 검색 결과 없음 페이지로 이동
         router.push(`/no-result?q=${encodeURIComponent(searchQuery.trim())}`);
       }
     } catch (err) {
@@ -101,7 +102,7 @@ export default function SearchInput() {
               ></path>
             </svg>
           )}
-          {isLoading ? "검색 중..." : "진단하기"}
+          {isLoading ? "AI가 진단 중이에요" : "진단하기"}
         </button>
       </div>
       {error && (
