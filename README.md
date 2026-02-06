@@ -109,4 +109,4 @@
 | --- | --- |
 | FE | Next.js, tailwind css |
 | BE | spring boot |
-| Infra | aws, vercel |
+| Infra | oci, vercel |
