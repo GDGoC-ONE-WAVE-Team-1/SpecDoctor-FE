@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ReportFakeActivityForm from './ReportFakeActivityForm';
+import { api } from '@/lib/apiClient';
 
 interface ActivityCountData {
     totalActivityCount: number;
@@ -20,11 +21,10 @@ export default function VerificationCenterCard() {
     useEffect(() => {
         const fetchActivityData = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API}api/v1/activity`);
-                if (!response.ok) {
+                const data = await api.get<ActivityCountData>(`/api/v1/activity/count-all`);
+                if (!data) {
                     throw new Error('Failed to fetch activity data');
                 }
-                const data: ActivityCountData = await response.json();
                 setActivityData(data);
             } catch (error) {
                 console.error('Error fetching activity data:', error);
@@ -77,7 +77,7 @@ export default function VerificationCenterCard() {
                     </svg>
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-red-700">
-                    가짜 대외활동명을 검증 센터
+                    가짜 대외활동 검증 센터
                 </h2>
             </div>
 
