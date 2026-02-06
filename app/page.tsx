@@ -1,11 +1,5 @@
-import ClubHeader from "./components/ClubHeader";
 import ReviewSection from "./components/ReviewSection";
-import CautionHeader from "./components/CautionHeader";
-import DangerReport from "./components/DangerReport";
-import ReviewForm from "./components/ReviewForm";
-import ReviewCard from "./components/ReviewCard";
 import VerificationCenterCard from "./components/VerificationCenterCard";
-import ReviewPromoCard from "./components/ReviewPromoCard";
 import HeroSection from "./components/HeroSection";
 
 export default function Home() {
@@ -33,53 +27,21 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Club Header Section */}
-      <ClubHeader />
 
-      {/* Review Section */}
-      <ReviewSection />
-      {/* Caution Header Section */}
-      <CautionHeader />
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 font-sans">
-      <ReviewForm />
-
-      {/* Section Container */}
-      <div className="w-full max-w-7xl mx-auto flex flex-col gap-6">
-
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">실제 활동 멤버 후기</h2>
-            <div className="flex items-center gap-1.5 bg-yellow-50 px-3 py-1.5 rounded-full border border-yellow-100">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-orange-400">
-                <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-              </svg>
-              <span className="text-orange-600 font-bold text-sm">4.8</span>
-              <span className="text-orange-400 text-sm">(124개 리뷰)</span>
-            </div>
-          </div>
-
-
+      <div className="min-h-screen bg-white flex flex-col">
+        {/* 상단 헤더 */}
+        <div className="w-full">
+        <header className="w-full">
+          <HeroSection />
+        </header>
+        <div className="px-6 pt-15">
+          <VerificationCenterCard/>
         </div>
-
-        {/* Review Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reviews.map((review, i) => (
-            <ReviewCard key={i} {...review} />
-          ))}
+        <div>
+          <ReviewSection/>
         </div>
-
+        </div>
       </div>
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* 상단 헤더 */}
-      <div className="w-full">
-      <header className="w-full">
-        <HeroSection />
-      </header>
-      </div>
-
-      {/* Danger Report Section */}
-      <DangerReport />
     </main>
   );
 }

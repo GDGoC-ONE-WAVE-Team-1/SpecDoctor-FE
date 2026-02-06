@@ -1,34 +1,20 @@
+
+import React from 'react';
+
 export interface ReviewCardProps {
     author: string;
     part: string;
     date: string;
-    rating: number;
+    rating: number; // 0 to 5
     content: string;
     tags: string[];
     isVerified?: boolean;
 }
 
 export default function ReviewCard({
+
     author,
     part,
-import React from 'react';
-
-interface ReviewCardProps {
-    name: string;
-    maskedName?: boolean; // For "김*준" style
-    role: string;
-    date: string;
-    rating: number; // 0 to 5
-    content: string;
-    tags: string[];
-    isCertified?: boolean; // For "33기 수료생 인증" badge
-    certificationText?: string;
-    avatarImage?: string; // Optional image URL
-}
-
-export default function ReviewCard({
-    name,
-    role,
     date,
     rating,
     content,
