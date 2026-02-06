@@ -41,7 +41,7 @@ export default function ReviewForm() {
                         <input
                             type="text"
                             placeholder="예: 콘텐츠 기획, 영상 제작"
-                            className="w-full bg-white px-4 py-3 rounded-xl text-sm border-2 border-indigo-100 focus:border-indigo-500 focus:outline-none transition-colors placeholder-gray-300 text-gray-800"
+                            className="w-full bg-gray-50/50 px-4 py-3 rounded-xl text-sm border-none focus:ring-1 focus:ring-indigo-200 placeholder-gray-300 text-gray-800"
                         />
                     </div>
                     <div className="flex-1">
