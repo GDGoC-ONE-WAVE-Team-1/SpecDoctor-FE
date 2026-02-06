@@ -4,8 +4,38 @@ import React, { useState, useEffect } from 'react';
 import ReviewForm from './ReviewForm';
 import ReportFakeActivityForm from './ReportFakeActivityForm';
 
+interface ActivityCountData {
+    totalActivityCount: number;
+    reportedActivityCount: number;
+}
+
 export default function VerificationCenterCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activityData, setActivityData] = useState<ActivityCountData>({
+        totalActivityCount: 0,
+        reportedActivityCount: 0,
+    });
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Fetch activity count data
+    useEffect(() => {
+        const fetchActivityData = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API}api/v1/activity`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch activity data');
+                }
+                const data: ActivityCountData = await response.json();
+                setActivityData(data);
+            } catch (error) {
+                console.error('Error fetching activity data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchActivityData();
+    }, []);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -66,13 +96,21 @@ export default function VerificationCenterCard() {
                 <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-red-100/50">
                     <p className="text-sm text-gray-600 font-medium mb-1">누적 검증 완료</p>
                     <p className="text-2xl font-bold text-green-600">
-                        <AnimatedNumber end={1847} />건
+                        {isLoading ? (
+                            <span className="inline-block w-20 h-8 bg-gray-200 animate-pulse rounded"></span>
+                        ) : (
+                            <><AnimatedNumber end={activityData.totalActivityCount} />건</>
+                        )}
                     </p>
                 </div>
                 <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-red-100/50">
                     <p className="text-sm text-gray-600 font-medium mb-1">신고된 활동</p>
                     <p className="text-2xl font-bold text-red-600">
-                        <AnimatedNumber end={1847} />건
+                        {isLoading ? (
+                            <span className="inline-block w-20 h-8 bg-gray-200 animate-pulse rounded"></span>
+                        ) : (
+                            <><AnimatedNumber end={activityData.reportedActivityCount} />건</>
+                        )}
                     </p>
                 </div>
             </div>
