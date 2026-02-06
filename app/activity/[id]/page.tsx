@@ -37,8 +37,8 @@ export default function ActivityDetailPage() {
         </header>
 
         {/* 메인 컨텐츠 */}
-        <div className="flex justify-center w-full px-4">
-          <div className="my-20 w-full max-w-5xl">
+        <div className="w-full px-4">
+          <div className="max-w-2xl mx-auto my-20">
             <SearchInput />
           </div>
         </div>
