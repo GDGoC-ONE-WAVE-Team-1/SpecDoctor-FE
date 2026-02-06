@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function VerificationCenterCard() {
     return (
-        <div className="w-full max-w-[480px] bg-red-50 rounded-2xl p-6 md:p-8 flex flex-col gap-6">
+        <div className="w-full bg-red-50 rounded-2xl p-6 md:p-8 flex flex-col gap-6">
             {/* Header Section */}
             <div className="flex items-center gap-3">
                 {/* Warning Icon */}
