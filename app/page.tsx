@@ -1,6 +1,5 @@
 import VerificationCenterCard from "./components/VerificationCenterCard";
 import ReviewPromoCard from "./components/ReviewPromoCard";
-import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 
 export default function Home() {
