@@ -7,6 +7,17 @@ import ReportFakeActivityForm from './ReportFakeActivityForm';
 export default function VerificationCenterCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
+
     const handleReport = () => {
         setIsModalOpen(true);
     }
@@ -37,7 +48,7 @@ export default function VerificationCenterCard() {
                     </svg>
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-red-700">
-                    가짜 동아리 검증 센터
+                    가짜 대외활동명을 검증 센터
                 </h2>
             </div>
 
@@ -77,7 +88,7 @@ export default function VerificationCenterCard() {
             {/* Modal Overlay */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
-                    <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto">
+                    <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto scrollbar-hide">
                         {/* Close Button on top right of the modal if needed, but ReviewForm has a cancel button */}
                         <ReportFakeActivityForm onClose={closeModal} />
                     </div>

@@ -1,6 +1,23 @@
+'use client';
+
+import { useState, useEffect } from "react";
 import ReviewCard, { ReviewCardProps } from "./ReviewCard";
+import ReviewForm from "./ReviewForm";
 
 export default function ReviewSection({ disableWriteReview = false }: { disableWriteReview?: boolean }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
+
     // Mock Data based on screenshot
     const reviews: ReviewCardProps[] = [
         {
@@ -24,7 +41,13 @@ export default function ReviewSection({ disableWriteReview = false }: { disableW
     ];
 
 
-    console.log(disableWriteReview)
+    const handleReport = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
 
     return (
         <div className="w-full pb-12">
@@ -44,7 +67,7 @@ export default function ReviewSection({ disableWriteReview = false }: { disableW
                     </div>
 
                     {!disableWriteReview && (
-                        <button className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
+                        <button onClick={handleReport} className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
                             후기 작성하기
                         </button>
                     )}
@@ -68,6 +91,15 @@ export default function ReviewSection({ disableWriteReview = false }: { disableW
                 </div>
 
             </div>
+
+            {/* Modal Overlay */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+                    <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto scrollbar-hide">
+                        <ReviewForm onClose={closeModal} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

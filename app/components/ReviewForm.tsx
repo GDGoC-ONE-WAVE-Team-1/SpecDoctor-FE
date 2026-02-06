@@ -10,7 +10,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
     const [rating, setRating] = useState(4);
 
     return (
-        <div className="w-full max-w-lg bg-white rounded-[32px] p-8 shadow-xl mx-auto my-10 border border-gray-100 font-sans">
+        <div className="w-full max-w-2xl bg-white rounded-[32px] p-8 shadow-xl mx-auto my-10 border border-gray-100 font-sans">
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mx-auto mb-4 text-indigo-600">
@@ -95,20 +95,6 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                         className="w-full bg-gray-50/50 p-4 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:bg-white transition-all min-h-[140px] resize-none placeholder-gray-400"
                         placeholder="활동을 통해 얻은 성과, 운영진의 피드백, 분위기 등 구체적으로 적어주세요."
                     ></textarea>
-                </div>
-
-                {/* File Upload */}
-                <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">활동 증빙자료 첨부</label>
-                    <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer group">
-                        <div className="w-8 h-8 bg-gray-200 rounded text-gray-500 flex items-center justify-center mb-3 group-hover:bg-gray-300 transition-colors">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                            </svg>
-                        </div>
-                        <p className="text-xs font-bold text-gray-500 mb-1">수료증 또는 활동 증명서 업로드</p>
-                        <p className="text-[10px] text-gray-400">PDF, JPG, PNG (최대 15MB)</p>
-                    </div>
                 </div>
 
                 {/* Actions */}

@@ -57,7 +57,7 @@ function Badge() {
         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF4D4D]"></span>
       </span>
       <span className="text-[13px] font-semibold text-[#0B1220]">
-        실시간 가짜 동아리 주의보 발령 중
+        실시간 가짜 대외활동 주의보 발령 중
       </span>
     </div>
   );
