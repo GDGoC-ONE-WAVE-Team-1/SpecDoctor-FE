@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 
-export default function ReviewForm() {
+interface ReviewFormProps {
+    onClose?: () => void;
+}
+
+export default function ReviewForm({ onClose }: ReviewFormProps) {
     const [rating, setRating] = useState(4);
 
     return (
-        <div className="w-full max-w-lg bg-white rounded-[32px] p-8 shadow-xl mx-auto my-10 border border-gray-100 font-sans">
+        <div className="w-full max-w-2xl bg-white rounded-[32px] p-8 shadow-xl mx-auto my-10 border border-gray-100 font-sans">
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mx-auto mb-4 text-indigo-600">
@@ -93,23 +97,9 @@ export default function ReviewForm() {
                     ></textarea>
                 </div>
 
-                {/* File Upload */}
-                <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">활동 증빙자료 첨부</label>
-                    <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer group">
-                        <div className="w-8 h-8 bg-gray-200 rounded text-gray-500 flex items-center justify-center mb-3 group-hover:bg-gray-300 transition-colors">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                            </svg>
-                        </div>
-                        <p className="text-xs font-bold text-gray-500 mb-1">수료증 또는 활동 증명서 업로드</p>
-                        <p className="text-[10px] text-gray-400">PDF, JPG, PNG (최대 15MB)</p>
-                    </div>
-                </div>
-
                 {/* Actions */}
                 <div className="flex gap-3 pt-4">
-                    <button type="button" className="flex-1 bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+                    <button type="button" onClick={onClose} className="flex-1 bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                         취소
                     </button>
                     <button type="submit" className="flex-[2] bg-[#6366f1] text-white font-bold py-3.5 rounded-xl hover:bg-[#4f46e5] transition-colors shadow-lg shadow-indigo-200 text-sm">

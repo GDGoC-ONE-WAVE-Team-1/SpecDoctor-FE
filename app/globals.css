@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* EKG Heartbeat Animation */
+.ekg-path {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  animation: heartbeat 3s linear infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    stroke-dashoffset: 2400;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}

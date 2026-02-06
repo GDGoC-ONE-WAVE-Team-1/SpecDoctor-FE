@@ -1,10 +1,32 @@
 "use client";
 
+import { api } from "@/lib/apiClient";
 import { useState } from "react";
 
-export default function ReportFakeActivityForm() {
+export default function ReportFakeActivityForm({ onClose }: { onClose: () => void }) {
     const [activityName, setActivityName] = useState("");
     const [reason, setReason] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            if (!activityName.trim() || !reason.trim()) {
+                alert("활동명과 신고 사유를 모두 입력해주세요.");
+                return;
+            }
+
+            await api.post("/api/v1/report", {
+                name: activityName,
+                message: reason,
+            });
+
+            alert("신고가 성공적으로 접수되었어요!");
+            onClose();
+        } catch (error) {
+            console.error(error);
+            alert("신고 접수 중 오류가 발생했습니다.");
+        }
+    };
 
     return (
         <div className="w-full max-w-lg bg-white rounded-[32px] p-8 shadow-xl mx-auto border border-gray-100 font-sans relative">
@@ -23,11 +45,11 @@ export default function ReportFakeActivityForm() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">대외활동 신고하기</h2>
                 <p className="text-xs text-gray-500 leading-relaxed">
                     클린한 스펙 준비 환경을 위해 가짜 대외활동을 신고해 주세요.<br />
-                    검토 후 영업일 기준 3일 이내에 반영돼요.
+                    허위 신고는 별도 안내 없이 삭제될 수 있습니다.
                 </p>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
                 {/* Activity Name */}
                 <div>
                     <label className="block text-xs font-bold text-gray-700 mb-2 pl-1">신고하는 대외활동명</label>
@@ -36,7 +58,7 @@ export default function ReportFakeActivityForm() {
                         value={activityName}
                         onChange={(e) => setActivityName(e.target.value)}
                         placeholder="활동명을 입력하세요"
-                        className="w-full bg-white text-gray-800 px-4 py-3.5 rounded-xl text-sm font-medium border border-red-800 focus:outline-none focus:ring-1 focus:ring-red-800 placeholder-gray-400"
+                        className="w-full bg-gray-50 text-gray-800 px-4 py-3.5 rounded-xl text-sm font-medium border-none focus:outline-none focus:ring-2 focus:ring-red-800 placeholder-gray-400"
                     />
                 </div>
 
@@ -46,14 +68,14 @@ export default function ReportFakeActivityForm() {
                     <textarea
                         value={reason}
                         onChange={(e) => setReason(e.target.value)}
-                        className="w-full bg-gray-50 p-4 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all min-h-[160px] resize-none placeholder-gray-400"
+                        className="w-full bg-gray-50 p-4 rounded-xl text-sm border-none focus:outline-none focus:ring-2 focus:ring-red-800 focus:bg-white transition-all min-h-[160px] resize-none placeholder-gray-400"
                         placeholder="구체적인 신고 사유를 적어주세요 (최소 20자 이상)"
                     ></textarea>
                 </div>
 
                 {/* Actions */}
                 <div className="flex gap-3 pt-2">
-                    <button type="button" className="flex-[0.4] bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+                    <button type="button" onClick={onClose} className="flex-[0.4] bg-gray-100 text-gray-500 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                         취소
                     </button>
                     <button type="submit" className="flex-1 bg-[#e04138] text-white font-bold py-3.5 rounded-xl hover:bg-[#c93028] transition-colors shadow-lg shadow-red-100 text-sm">

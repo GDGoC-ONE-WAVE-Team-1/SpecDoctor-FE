@@ -38,7 +38,7 @@ export default function Home() {
             <VerificationCenterCard />
           </div>
           <div>
-            <ReviewSection />
+            <ReviewSection disableWriteReview={true} />
           </div>
         </div>
       </div>

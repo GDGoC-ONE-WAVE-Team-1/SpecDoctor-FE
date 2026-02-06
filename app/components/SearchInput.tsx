@@ -71,6 +71,7 @@ export default function SearchInput() {
             placeholder="동아리명, 부트캠프명 등 대외활동명을 검색해 보세요"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
             disabled={isLoading}
           />
         </div>

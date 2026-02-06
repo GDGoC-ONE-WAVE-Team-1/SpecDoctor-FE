@@ -1,6 +1,23 @@
-import ReviewCard, { ReviewCardProps } from "./ReviewCard";
+'use client';
 
-export default function ReviewSection() {
+import { useState, useEffect } from "react";
+import ReviewCard, { ReviewCardProps } from "./ReviewCard";
+import ReviewForm from "./ReviewForm";
+
+export default function ReviewSection({ disableWriteReview = false }: { disableWriteReview?: boolean }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
+
     // Mock Data based on screenshot
     const reviews: ReviewCardProps[] = [
         {
@@ -23,13 +40,22 @@ export default function ReviewSection() {
         }
     ];
 
+
+    const handleReport = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
     return (
         <div className="w-full pb-12">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="max-w-6xl mx-auto px-4 md:px-8">
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         <h2 className="text-2xl font-bold text-gray-900">실제 활동 멤버 후기</h2>
                         <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
                             <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -40,9 +66,11 @@ export default function ReviewSection() {
                         </div>
                     </div>
 
-                    <button className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
-                        후기 작성하기
-                    </button>
+                    {!disableWriteReview && (
+                        <button onClick={handleReport} className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors">
+                            후기 작성하기
+                        </button>
+                    )}
                 </div>
 
                 {/* Review Grid */}
@@ -63,6 +91,15 @@ export default function ReviewSection() {
                 </div>
 
             </div>
+
+            {/* Modal Overlay */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+                    <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto scrollbar-hide">
+                        <ReviewForm onClose={closeModal} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
