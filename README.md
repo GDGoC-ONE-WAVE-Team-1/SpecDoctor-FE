@@ -64,6 +64,7 @@
 | 진료권 | 코인 제도 |
 
 ---
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/ca03904c-3a04-474d-912a-806e3fb6f6b4" />
 
 ## 솔루션 및 차별점
 
