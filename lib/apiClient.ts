@@ -1,3 +1,5 @@
+import { getCookie } from "./auth";
+
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 type RequestOptions = Omit<RequestInit, "method" | "body">;

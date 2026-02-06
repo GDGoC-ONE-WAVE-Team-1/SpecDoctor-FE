@@ -12,7 +12,7 @@ export default function HeroSection() {
       </div>
 
       {/* EKG Heartbeat Animation */}
-      <div className="absolute top-[60%] right-0 w-1/2 -translate-y-1/2 opacity-10 pointer-events-none overflow-hidden z-20">
+      <div className="absolute top-[60%] right-0 w-1/2 -translate-y-1/2 opacity-20 pointer-events-none overflow-hidden z-20">
         <svg
           viewBox="0 0 1200 150"
           fill="none"
